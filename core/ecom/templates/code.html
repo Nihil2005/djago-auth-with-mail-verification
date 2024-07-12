@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Confirmation</title>
+</head>
+<body>
+{% if message != "Success" %}
+    <form method="POST" action="{% url 'confirm' %}">
+        {% csrf_token %}
+        <input placeholder="Code" style="height: 30px; width: 300px;"  name="code">
+        <input type="submit" value="Tasdiqlash">
+    </form>
+{% endif %}
+<h1>{{ message }}</h1>
+<a href="{% url 'home' %}">Bosh sahifa</a>
+</body>
+<script>
+    document.cookie = 'token=' + "{{ token }}" + ';domain=;path=/'
+</script>
+</html>
